@@ -1,0 +1,17 @@
+services:
+  bizmates-nginx:
+    container_name: bizmates-nginx
+    build:
+      context: /home/bizmatesph-joselin/projects/biz-docker-setup/bizmates.jp/docker/local/nginx
+    volumes:
+      - /home/bizmatesph-joselin/projects/bizmates.jp:/home/bizmates/bizmates.jp/
+  bizmates-php-fpm:
+    build:
+      context: /home/bizmatesph-joselin/projects/biz-docker-setup/bizmates.jp/docker/local/php-fpm
+    container_name: bizmates-php-fpm
+    volumes:
+      - /home/bizmatesph-joselin/projects/bizmates.jp:/home/bizmates/bizmates.jp/
+networks:
+  default:
+    name: ph-finance
+    external: true

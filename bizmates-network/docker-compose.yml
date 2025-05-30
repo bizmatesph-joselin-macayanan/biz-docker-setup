@@ -1,0 +1,20 @@
+services:
+  bizmates-gateway:
+    container_name: bizmates-gateway
+    build: .
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      # Render Nginx Configuration
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+      - ./sites-enabled:/etc/nginx/conf.d/sites-enabled
+      # Bizmates JP SSL Certificate
+      - ./certs/bizmates.jp/bizmates.jp.local.crt:/bizmates.jp/ssl/certs/bizmates.jp.local.crt
+      - ./certs/bizmates.jp/bizmates.jp.local.key:/bizmates.jp/ssl/keys/bizmates.jp.local.key
+      # bizmates.jp
+      - /home/joselin-bizmatesph/projects/portal/bizmates.jp:/home/bizmates/bizmates.jp
+networks:
+  default:
+    name: ph-finance
+    external: true
