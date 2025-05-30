@@ -1,0 +1,17 @@
+services:
+  percona:
+    platform: linux/amd64
+    build:
+      context: .
+    container_name: percona
+    volumes:
+      - '${MYSQL_TAR_FILE}:/var/backup/mysql/bizmates-db.tar'
+      - ${DB_VOLUME}:/var/lib/mysql
+      - ./restore-backup.sh:/restore-backup.sh
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+      - "NUM_OF_THREAD=${NUM_OF_THREAD}"
+networks:
+  default:
+    name: ph-finance
+    external: true

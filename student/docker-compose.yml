@@ -1,0 +1,23 @@
+services:
+  student-frontend:
+    build:
+      dockerfile: ./frontend/Dockerfile
+    container_name: student-frontend
+    volumes:
+      - /home/bizmatesph-joselin/projects/student/MBTI_frontend:/bizmates
+  student-backend-nginx:
+    image: nginx:1.15.6
+    container_name: student-backend-nginx
+    volumes:
+      - ./backend/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - /home/bizmatesph-joselin/projects/student/MBTI_backend/src:/var/www/bizmates.jp/laravel
+  student-backend-php-fpm:
+    build:
+      context: /home/bizmatesph-joselin/projects/student/MBTI_backend/docker/local/php
+    container_name: student-backend-php-fpm
+    volumes:
+      - /home/bizmatesph-joselin/projects/student/MBTI_backend/src:/var/www/bizmates.jp/laravel
+networks:
+  default:
+    name: ph-finance
+    external: true
