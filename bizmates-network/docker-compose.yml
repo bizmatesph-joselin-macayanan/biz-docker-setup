@@ -14,6 +14,8 @@ services:
       - ./certs/bizmates.jp/bizmates.jp.local.key:/bizmates.jp/ssl/keys/bizmates.jp.local.key
       # bizmates.jp
       - /home/joselin-bizmatesph/projects/portal/bizmates.jp:/home/bizmates/bizmates.jp
+      # FMS
+      - /home/bizmatesph-joselin/projects/fms/bizmates-finance-app/dist:/fms-frontend
 networks:
   default:
     name: ph-finance
