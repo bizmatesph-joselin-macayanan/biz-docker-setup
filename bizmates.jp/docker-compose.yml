@@ -1,8 +1,6 @@
 services:
   bizmates-nginx:
     container_name: bizmates-nginx
-    ports:
-      - 8001:80
     build:
       context: /home/bizmatesph-joselin/projects/biz-docker-setup/bizmates.jp/docker/local/nginx
     volumes:
