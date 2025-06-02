@@ -12,8 +12,10 @@ services:
       # Bizmates JP SSL Certificate
       - ./certs/bizmates.jp/bizmates.jp.local.crt:/bizmates.jp/ssl/certs/bizmates.jp.local.crt
       - ./certs/bizmates.jp/bizmates.jp.local.key:/bizmates.jp/ssl/keys/bizmates.jp.local.key
-      # bizmates.jp
+      # Bizmates JP
       - /home/joselin-bizmatesph/projects/portal/bizmates.jp:/home/bizmates/bizmates.jp
+      # Bizmates PH
+      - /home/joselin-bizmatesph/projects/portal/bizmates.ph:/home/bizmates/bizmates.ph
       # FMS
       - /home/bizmatesph-joselin/projects/fms/bizmates-finance-app/dist:/fms-frontend
 networks:

@@ -3,16 +3,16 @@ services:
     container_name: applicant-nginx
     build:
       context: .
-      dockerfile: docker/Dockerfile
+      dockerfile: ./docker/aws/nginx/Dockerfile
     volumes:
-      - /home/joselin-bizmatesph/projects/portal/bizmates.ph:/home/bizmates/bizmates.ph/
+      - /home/bizmatesph-joselin/projects/bizmates.ph:/home/bizmates/bizmates.ph/
   applicant-php-fpm:
     container_name: applicant-php-fpm
     build:
-      context: .
-      dockerfile: docker/Dockerfile
+      context: ./
+      dockerfile: ./docker/aws/php/Dockerfile
     volumes:
-      - /home/joselin-bizmatesph/projects/portal/bizmates.ph:/home/bizmates/bizmates.ph/
+      - /home/bizmatesph-joselin/projects/bizmates.ph:/home/bizmates/bizmates.ph/
 networks:
   default:
     name: ph-finance

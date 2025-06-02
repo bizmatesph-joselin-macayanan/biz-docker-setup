@@ -1,0 +1,8 @@
+0 10 * * * . /home/bizmates/bizmates.ph/.env.cron && /usr/local/bin/php /home/bizmates/bizmates.ph/oil refine daily >> /proc/1/fd/1 2>&1
+0 5 * * *  . /home/bizmates/bizmates.ph/.env.cron && /usr/local/bin/php /home/bizmates/bizmates.ph/oil refine import >> /proc/1/fd/1 2>&1
+
+*/5 * * * * . /home/bizmates/bizmates.ph/.env.cron && /usr/local/bin/php /home/bizmates/bizmates.ph/oil refine send_mail_queue >> /proc/1/fd/1 2>&1
+0 2 * * * . /home/bizmates/bizmates.ph/.env.cron && /usr/local/bin/php /home/bizmates/bizmates.ph/oil refine emailreminder >> /proc/1/fd/1 2>&1
+
+15 20 * * * . /home/bizmates/bizmates.ph/.env.cron && /usr/local/bin/php /home/bizmates/bizmates.ph/oil refine update_sparkhire_applicants >> /proc/1/fd/1 2>&1
+30 5 * * 1,4 . /home/bizmates/bizmates.ph/.env.cron && /usr/local/bin/php /home/bizmates/bizmates.ph/oil refine deactivate_untreated_applicants >> /proc/1/fd/1 2>&1
