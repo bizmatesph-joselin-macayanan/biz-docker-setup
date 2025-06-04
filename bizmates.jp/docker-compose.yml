@@ -1,6 +1,7 @@
 services:
   bizmates-nginx:
     container_name: bizmates-nginx
+    hostname: bizmates.jp.local
     build:
       context: /home/bizmatesph-joselin/projects/biz-docker-setup/bizmates.jp/docker/local/nginx
     volumes:

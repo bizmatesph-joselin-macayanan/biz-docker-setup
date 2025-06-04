@@ -1,0 +1,19 @@
+services:
+  chat-db-api-mysql:
+    container_name: 'chat-db-api-mysql'
+    build:
+      context: ./docker/chat-db-api-mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+      - "MYSQL_ROOT_HOST=%"
+      - "MYSQL_DATABASE=${MYSQL_DB_NAME}"
+      - "MYSQL_USER=${MYSQL_USER}"
+      - "MYSQL_PASSWORD=${MYSQL_PASS}"
+    ports:
+      - "3377:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+networks:
+  default:
+    name: ph-finance
+    external: true

@@ -18,6 +18,13 @@ services:
       - /home/joselin-bizmatesph/projects/portal/bizmates.ph:/home/bizmates/bizmates.ph
       # FMS
       - /home/bizmatesph-joselin/projects/fms/bizmates-finance-app/dist:/fms-frontend
+      # MBTI Frontend
+      - /home/bizmatesph-joselin/projects/student/MBTI_frontend/dist:/student-frontend
+      # Mystage
+      - /home/bizmatesph-joselin/projects/mystage/mystage-frontend/dist:/mystage-student
+      - /home/bizmatesph-joselin/projects/mystage/mystage-frontend/dist:/mystage-jp
+      # Mystage System Test
+      - /home/bizmatesph-joselin/projects/mystage/mystage-system-test/dist:/mystage-system-test
 networks:
   default:
     name: ph-finance

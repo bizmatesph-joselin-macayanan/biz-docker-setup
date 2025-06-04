@@ -1,0 +1,50 @@
+services:
+  chat-db-api-app:
+    container_name: chat-db-api-app
+    build:
+      context: /home/bizmatesph-joselin/projects/mystage/chat-db-api
+      dockerfile: /home/bizmatesph-joselin/projects/mystage/chat-db-api/docker/chat-db-api/Dockerfile
+    environment:
+      - "MY_CONN_STR=${MYSQL_USER}:${MYSQL_PASS}@tcp(${MYSQL_HOST}:3306)/${MYSQL_DB_NAME}?parseTime=true"
+      - "LISTEN_ADDR=:8166"
+  chat-server:
+    container_name: chatserver
+    volumes:
+      - /home/bizmatesph-joselin/projects/mystage/mystage-chat-backend:/usr/src/app
+    build:
+      context: /home/bizmatesph-joselin/projects/mystage/mystage-chat-backend
+      dockerfile: /home/bizmatesph-joselin/projects/mystage/mystage-chat-backend/Dockerfile
+    command: nodemon app/app.js
+    environment: 
+      RSA_PUBLIC_KEY: | # This key is only used for local dev environment and thus committed to Git
+        -----BEGIN PUBLIC KEY-----
+        MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAyPXQmiuJYdKp9c8EOr6q
+        pwnRx20bhjn7Q7gxCYM2cMkD3ho3RuKxczxBN1DyU6jwsSRMQxOn91lTqcALgH26
+        /KkghTRAyPky6ClWOnM381QuHADKAS8ryp5ubymFRmZip1TdF9VEm5migWmxs/mo
+        JOjWFcfIWFnZcJYl42vG/ltqHAynnyu5XZ1IlxfPPPH+fUwdusNM0dYCEy2JxtfF
+        7A3TgCOmNad5cjXQpcZY6F2aQk5UdECmPBf4RoGuGX+0GAuFRdWXl8OKPKNyIiX6
+        TAicHrvkFMhAvOLfAvuSTtrpdd86eT9usg85uvvQbgpeXNsANEU3YpmZs4/Eft7c
+        Je2cNrkRzU7XlbaBZ4eHAeOhbmKt07FhASkyBV0VKXcnpBtIANIAXPp10sMkJRg6
+        ZBaTBU2leBwPgVgpUkMNcCK4T59rV6W76B7oZgeykwFv9h+DTDGZxuoIdUU+mman
+        aBhIBFbYSWW6tZHC/X9LlE0Lz1QGQSynFpf0L77iXVcvhJtAtVkb8vl/ITExdiOg
+        8ZYoEBR0O4sCK37tcmJgQrhbqMGGzaAEga02dNSs/gjqoboMrxfWxEqcwifeI7/h
+        QeTBB/w5KRZePD3W035UF4JJho7xazORV2n1UD99OuGYZ71q4FXeZvtPfEkmGMNl
+        OZkJgT8InOm1UEFAiDBgiMUCAwEAAQ==
+        -----END PUBLIC KEY-----
+  mystage-frontend:
+    container_name: mystage-frontend
+    hostname: mystage-frontend
+    build:
+      dockerfile: ./mystage-frontend/Dockerfile
+    volumes:
+      - /home/bizmatesph-joselin/projects/mystage/mystage-frontend:/app
+  mystage-system-test:
+    container_name: mystage-system-test
+    build:
+      dockerfile: ./mystage-system-test/Dockerfile
+    volumes:
+      - /home/bizmatesph-joselin/projects/mystage/mystage-system-test:/app
+networks:
+  default:
+    name: ph-finance
+    external: true
