@@ -1,0 +1,11 @@
+services:
+  ls-database-php-fpm:
+    build:
+      context: ./docker/production/php-fpm
+    container_name: ls-database-php-fpm
+    volumes:
+      - /home/bizmatesph-joselin/projects/ls-database-migrations:/var/www/ls-db-migrations
+networks:
+  default:
+    name: ph-finance
+    external: true
