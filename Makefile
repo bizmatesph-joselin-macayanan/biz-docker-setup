@@ -41,6 +41,11 @@ stop-fms:
 	make -C /home/bizmatesph-joselin/projects/fms/bizmates-authentication-api down
 	make -C /home/bizmatesph-joselin/projects/fms/bizmates-finance-app down
 
+start-ls-database-migrations:
+	docker compose -f ./ls-database-migrations/docker-compose.yml up -d
+stop-ls-database-migrations:
+	docker compose -f ./ls-database-migrations/docker-compose.yml down
+
 start-gateway:
 	docker compose -f ./bizmates-network/docker-compose.yml down
 	docker compose -f ./bizmates-network/docker-compose.yml up -d
