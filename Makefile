@@ -35,7 +35,7 @@ start-fms:
 	make -C /home/bizmatesph-joselin/projects/fms/bizmates-authentication-api up
 	make -C /home/bizmatesph-joselin/projects/fms/bizmates-finance-app up
 stop-fms:
-	docker compose -f ./databases/fms/docker-compose.yml up -d
+	docker compose -f ./databases/fms/docker-compose.yml down
 	make -C /home/bizmatesph-joselin/projects/fms/bizmates-finance-api down
 	make -C /home/bizmatesph-joselin/projects/fms/bizmates-main-api down
 	make -C /home/bizmatesph-joselin/projects/fms/bizmates-authentication-api down
