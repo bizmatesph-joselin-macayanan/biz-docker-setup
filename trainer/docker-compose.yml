@@ -1,0 +1,27 @@
+services:
+  trainer-php-fpm:
+    build:
+      context: ./backend
+      dockerfile: ./docker/prod/php/Dockerfile
+    container_name: trainer-php-fpm
+    working_dir: /trainer-backend/
+    volumes:
+      - /home/bizmatesph-joselin/projects/trainer/bizmates-trainer-backend:/trainer-backend
+  trainer-nginx:
+    build:
+      context: ./backend
+      dockerfile: ./docker/prod/nginx/Dockerfile
+    container_name: trainer-nginx
+    volumes:
+      - ./:/trainer-backend
+  trainer-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: trainer-frontend
+    volumes:
+      - /home/bizmatesph-joselin/projects/trainer/bizmates-trainer-frontend:/bizmates-trainer-frontend
+networks:
+  default:
+    name: ph-finance
+    external: true
