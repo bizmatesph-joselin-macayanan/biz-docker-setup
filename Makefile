@@ -16,6 +16,11 @@ start-student:
 stop-student:
 	docker compose -f ./student/docker-compose.yml down
 
+start-trainer:
+	docker compose -f ./trainer/docker-compose.yml up -d
+stop-trainer:
+	docker compose -f ./trainer/docker-compose.yml down
+
 start-mystage:
 	docker compose -f ./databases/chat-db/docker-compose.yml up -d
 	docker compose -f ./mystage/docker-compose.yml up -d
