@@ -1,0 +1,19 @@
+services:
+  bco-php-fpm:
+    build:
+      context: .
+      dockerfile: ./docker/production/php-fpm/Dockerfile
+    container_name: bco-php-fpm
+    volumes:
+      - /home/bizmatesph-joselin/projects/bizmates_coaching:/var/www/html/bizmates_co
+  bco-nginx:
+    build:
+      context: .
+      dockerfile: ./docker/production/nginx/Dockerfile
+    container_name: bco-nginx
+    volumes:
+      - /home/bizmatesph-joselin/projects/bizmates_coaching:/var/www/html/bizmates_co
+networks:
+  default:
+    name: ph-finance
+    external: true

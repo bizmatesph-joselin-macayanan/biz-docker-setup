@@ -29,7 +29,7 @@ stop-mystage:
 	docker compose -f ./mystage/docker-compose.yml down
 
 start-ph:
-	docker compose -f ./bizmates.jp/docker-compose.yml up -d
+	docker compose -f ./bizmates.ph/docker-compose.yml up -d
 stop-ph:
 	docker compose -f ./bizmates.jp/docker-compose.yml down
 

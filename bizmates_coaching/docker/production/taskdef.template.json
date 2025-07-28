@@ -1,0 +1,317 @@
+{
+  "family": "${BUILD_ENV}-bizmates-coaching",
+  "cpu": "512",
+  "memory": "1024",
+  "networkMode": "awsvpc",
+  "taskRoleArn": "arn:aws:iam::${AWS_ACCOUNT_ID}:role/LS_ECSTaskRole_bizmates_coaching_${BUILD_ENV}",
+  "executionRoleArn": "arn:aws:iam::${AWS_ACCOUNT_ID}:role/LS_ECSTaskExecuteRole_bizmates_coaching_${BUILD_ENV}",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "containerDefinitions": [
+    {
+      "name": "${APP_APP_NAME}",
+      "image": "${APP_IMAGE_URI}:${RELEASE_VERSION}",
+      "essential": true,
+      "linuxParameters": {
+        "initProcessEnabled": true
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/${BUILD_ENV}-bizmates-coaching",
+          "awslogs-region": "${AWS_DEFAULT_REGION}",
+          "awslogs-stream-prefix": "container"
+        }
+      },
+      "portMappings": [],
+      "mountPoints": [
+        {
+          "sourceVolume": "bizmates_co",
+          "containerPath": "/var/www/html/bizmates_co",
+          "readOnly": false
+        }
+      ],      
+      "environment": [
+        {
+          "name": "APP_DEBUG",
+          "value": "false"
+        },
+        {
+          "name": "APP_ENV",
+          "value": "${BUILD_ENV}"
+        },
+        {
+          "name": "APP_NAME",
+          "value": "coaching"
+        },
+        {
+          "name": "APP_URL",
+          "value": "${APP_URL}"
+        },
+        {
+          "name": "ASSET_URL",
+          "value": "/bizmatescoaching/"
+        },
+        {
+          "name": "BCO_ADMIN_EMAIL",
+          "value": ""
+        },
+        {
+          "name": "BCO_FRONTEND_HOST",
+          "value": ""
+        },
+        {
+          "name": "BCO_SECRET",
+          "value": ""
+        },
+        {
+          "name": "BIZ_SUPPORT_EMAIL",
+          "value": ""
+        },
+        {
+          "name": "BIZ_SUPPORT_NAME",
+          "value": ""
+        },
+        {
+          "name": "BROADCAST_DRIVER",
+          "value": ""
+        },
+        {
+          "name": "CACHE_DRIVER",
+          "value": ""
+        },
+        {
+          "name": "DB_CONNECTION",
+          "value": "mysql"
+        },
+        {
+          "name": "DB_DATABASE",
+          "value": "bizmates_co"
+        },
+        {
+          "name": "DB_HOST",
+          "value": "${DB_HOST}"
+        },
+        {
+          "name": "DB_HOST_READ",
+          "value": ""
+        },
+        {
+          "name": "DB_HOST_WRITE",
+          "value": ""
+        },
+        {
+          "name": "DB_PORT",
+          "value": ""
+        },
+        {
+          "name": "DEFAULT_TIMESLOT_DAYS",
+          "value": ""
+        },
+        {
+          "name": "DEFAULT_TIMESLOT_START_DATE",
+          "value": ""
+        },
+        {
+          "name": "FILESYSTEM_DISK",
+          "value": ""
+        },
+        {
+          "name": "GRAPHIQL_ROUTE_NAME",
+          "value": ""
+        },
+        {
+          "name": "GRAPHIQL_ROUTE_URI",
+          "value": ""
+        },
+        {
+          "name": "JWT_AUTH_AUTH_HEADER_ENABLED",
+          "value": ""
+        },
+        {
+          "name": "JWT_AUTH_COOKIE_KEY",
+          "value": ""
+        },
+        {
+          "name": "JWT_SECRET",
+          "value": ""
+        },
+        {
+          "name": "JWT_TTL",
+          "value": ""
+        },
+        {
+          "name": "LIGHTHOUSE_ROUTE_NAME",
+          "value": ""
+        },
+        {
+          "name": "LIGHTHOUSE_ROUTE_URI",
+          "value": ""
+        },
+        {
+          "name": "LOG_CHANNEL",
+          "value": "stderr"
+        },
+        {
+          "name": "LOG_DEPRECATIONS_CHANNEL",
+          "value": ""
+        },
+        {
+          "name": "LOG_LEVEL",
+          "value": "warning"
+        },
+        {
+          "name": "MAIL_ENCRYPTION",
+          "value": ""
+        },
+        {
+          "name": "MAIL_FROM_ADDRESS",
+          "value": ""
+        },
+        {
+          "name": "MAIL_FROM_NAME",
+          "value": ""
+        },
+        {
+          "name": "MAIL_HOST",
+          "value": "${MAIL_HOST}"
+        },
+        {
+          "name": "MAIL_MAILER",
+          "value": ""
+        },
+        {
+          "name": "MAIL_PORT",
+          "value": "${MAIL_PORT}"
+        },
+        {
+          "name": "nlp_api",
+          "value": ""
+        },
+        {
+          "name": "PREFIX_URL",
+          "value": "bizmatescoaching"
+        },
+        {
+          "name": "QUEUE_CONNECTION",
+          "value": ""
+        },
+        {
+          "name": "SESSION_DRIVER",
+          "value": ""
+        },
+        {
+          "name": "SESSION_LIFETIME",
+          "value": ""
+        },
+        {
+          "name": "TRUSTED_PROXIES",
+          "value": ""
+        },
+        {
+          "name": "VITE_APP_NAME",
+          "value": ""
+        },
+        {
+          "name": "VITE_PUSHER_APP_CLUSTER",
+          "value": ""
+        },
+        {
+          "name": "VITE_PUSHER_APP_KEY",
+          "value": ""
+        },
+        {
+          "name": "VITE_PUSHER_HOST",
+          "value": ""
+        },
+        {
+          "name": "VITE_PUSHER_PORT",
+          "value": ""
+        },
+        {
+          "name": "VITE_PUSHER_SCHEME",
+          "value": ""
+        }
+      ],
+      "secrets": [
+        {
+          "name": "APP_KEY",
+          "valueFrom": "${SECRET_ARN}:APP_KEY::"
+        },
+        {
+          "name": "DB_USERNAME",
+          "valueFrom": "${SECRET_ARN}:DB_USERNAME::"
+        },
+        {
+          "name": "DB_PASSWORD",
+          "valueFrom": "${SECRET_ARN}:DB_PASSWORD::"
+        },
+        {
+          "name": "MAIL_USERNAME",
+          "valueFrom": "${SECRET_ARN}:MAIL_USERNAME::"
+        },
+        {
+          "name": "MAIL_PASSWORD",
+          "valueFrom": "${SECRET_ARN}:MAIL_PASSWORD::"
+        }
+      ]
+    },
+    {
+      "name": "${NGINX_APP_NAME}",
+      "image": "${NGINX_IMAGE_URI}:${RELEASE_VERSION}",
+      "essential": true,
+      "linuxParameters": {
+        "initProcessEnabled": true
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/${BUILD_ENV}-bizmates-coaching",
+          "awslogs-region": "${AWS_DEFAULT_REGION}",
+          "awslogs-stream-prefix": "container"
+        }
+      },
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "volumesFrom": [
+        {
+          "sourceContainer": "${APP_APP_NAME}",
+          "readOnly": false
+        }
+      ],      
+      "environment": [
+        {
+          "name": "APP_ENV",
+          "value": "${BUILD_ENV}"
+        }
+      ],
+      "secrets": [],
+      "dependsOn": [
+        {
+          "containerName": "${APP_APP_NAME}",
+          "condition": "START"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "key": "Environment",
+      "value": "production"
+    },
+    {
+      "key": "Service",
+      "value": "bizmates-coaching"
+    },
+    {
+      "key": "CmBillingGroup",
+      "value": "LS Production"
+    }
+  ]
+}

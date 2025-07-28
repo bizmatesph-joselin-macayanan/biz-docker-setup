@@ -1,0 +1,16 @@
+services:
+  zipan-mysql:
+    image: mysql:8.0.36
+    container_name: zipan-mysql
+    ports:
+      - 3311:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: Bizmates2016!
+      MYSQL_USER: bizmates
+      MYSQL_PASSWORD: Bizmates2016!
+    volumes:
+      - ./mysql:/var/lib/mysql
+networks:
+  default:
+    name: ph-finance
+    external: true
